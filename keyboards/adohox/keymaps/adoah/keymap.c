@@ -43,27 +43,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `----------------------------------'                        `----------------------------------'
  *              ,-----------------------------.       ,---------------------------.
  *              | Windows| LOWER|      |     |       |      |      | RAISE| Tab |
- *              `--------------| Space|Enter|       |BckSpc|Shift |------+------.
- *                            |      |     |       |      |      |
- *                            `------------'       `------------'
+ *              `--------------| Space |Enter|       |BckSpc|Shift |------+------.
+ *                            |        |     |       |      |      |
+ *                             `------------'        `------------'
  */
-  /*Check the raise layer*/
+  
   [_QWERTY] = KEYMAP( \
   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                             KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    \
   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                             KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, \
   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                             KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, \
-          LT(LOWER, KC_LGUI), KC_LCTRL, KC_SPC, KC_ENT,           KC_LALT, KC_BSPC, KC_LSHIFT, LT(RAISE, KC_TAB)\
+          LT(_LOWER, KC_TAB), KC_SPC, KC_LCTRL, KC_LGUI,            KC_LSFT, KC_LALT, KC_BSPC, LT(_RAISE, KC_ENT)\
 ),
 
 /* Raise
  *
- * ,----------------------------------.           ,----------------------------------.
- * |   1  |   2  |   3  |   4  |   5  |           |   6  |   7  |   8  |   9  |   0  |
- * |------+------+------+------+------|           |------+------+------+------+------|
- * |  Tab | Left | Down |  Up  | Right|           |   -  |   (  |   )  |   [  |   ]  |
- * |------+------+------+------+------|           |------+------+------+------+------|
- * |  Ctrl|   `  |  GUI |  Alt |DVORAK TOGGLE|    |   =  |   {  |   }  |   \  |   '  |
- * `----------------------------------'           `----------------------------------'
+ * ,----------------------------------.                  ,----------------------------------.
+ * |   1  |   2  |   3  |   4  |   5  |                  |   6  |   7  |   8  |   9  |   0  |
+ * |------+------+------+------+------|                  |------+------+------+------+------|
+ * |  DEL |   `  |  UP  |   :  |  ;   |                  |   -  |   (  |   )  |   [  |   ]  |
+ * |------+------+------+------+------|                  |------+------+------+------+------|
+ * |  Ctrl|   LEFT  |  DOWN |  RIGHT |DVORAK TOGGLE|     |   =  |   {  |   }  |   \  |   '  |
+ * `----------------------------------'                  `----------------------------------'
  *                  ,--------------------.    ,------,-------------.
  *                  |      | LOWER|      |    |      | RAISE|      |
  *                  `-------------|      |    |      |------+------.
@@ -72,31 +72,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = KEYMAP( \
   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    \
-  KC_TAB,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,      KC_MINS, KC_LPRN, KC_RPRN,  KC_LBRC, KC_RBRC, \
-  KC_LCTL, KC_GRV,  KC_LGUI, KC_LALT, TG(DVORAK),      KC_EQL, KC_LCBR, KC_RCBR, KC_BSLS,  KC_QUOT, \
+  KC_DEL,    KC_GRV, KC_UP, KC_COLN,   KC_SCLN,      KC_MINS, KC_LPRN, KC_RPRN,  KC_LBRC, KC_RBRC, \
+  KC_LCTL, KC_LEFT,  KC_DOWN, KC_RIGHT, TG(DVORAK),      KC_EQL, KC_LCBR, KC_RCBR, KC_BSLS,  KC_QUOT, \
           _______,  _______, _______, _______,      _______, _______, _______, _______            \
 ),
 
 /* Lower
  *
  * ,----------------------------------.           ,----------------------------------.
- * |   !  |   @  |   #  |   $  |   %  |           |   ^  |   &  |   *  |   (  |   )  |
+ * |   !  |   @  |   #  |   $  |   %  |           |   ^  |   &  |   *  |      |      |
  * |------+------+------+------+------|           |------+------+------+------+------|
- * |  Esc |      |      |      |      |           |      |   _  |   +  |   {  |   }  |
+ * |  Esc | lclk | msup | rclk |      |           |wh up |   _  |   +  |  del |      |
  * |------+------+------+------+------|           |------+------+------+------+------|
- * |  Caps|   ~  |      |      |      |           |      |      |      |   |  |   "  |
+ * |  Caps|msleft|msdown|msrght|   ~  |           |wh dn |      |      |   |  |   "  |
  * `----------------------------------'           `----------------------------------'
  *                  ,--------------------.    ,------,-------------.
  *                  |      | LOWER|      |    |      | RAISE|  Del |
  *                  `-------------|      |    | Enter|------+------.
  *                                |      |    |      |
- *                                `------'    `------'
- */
+ *                                `------'    `------
+  */
 [_LOWER] = KEYMAP( \
   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,      KC_CIRC, KC_AMPR, KC_ASTR, _______, _______, \
-  KC_ESC,  _______, _______, _______, _______,      _______, KC_UNDS, KC_PLUS, _______, _______, \
-  KC_CAPS, KC_TILD, _______, _______, _______,      _______, _______, _______, KC_PIPE,  KC_DQT, \
-          _______, _______, _______, _______,      KC_ENT,  _______, KC_DEL, _______              \
+  KC_ESC, KC_BTN1, KC_MS_U, KC_BTN2, _______,      KC_WH_U, KC_UNDS, KC_PLUS, KC_DEL, _______, \
+  KC_CAPS,  KC_MS_L, KC_MS_D, KC_MS_R, KC_TILD,      KC_WH_D, _______, /*KC_LALT(KC_F4)*/ _______, KC_PIPE,  KC_DQT, \
+          _______, _______, _______, _______,      KC_ENT,  _______,  _______, _______              \
 ),
 
 /* Modded Dvorak
@@ -138,8 +138,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] =  KEYMAP( \
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,        KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10, \
-  KC_F11,  KC_F12,  _______, RGB_SAI, RGB_SAD,      RGB_VAD, _______, KC_UP, _______, CALTDEL, \
-  RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD,      RGB_VAI, KC_LEFT, KC_DOWN, KC_RGHT,  TSKMGR, \
+  KC_F11,  KC_F12,  _______, RGB_SAI, RGB_SAD,      RGB_VAD, _______, _______, _______, CALTDEL, \
+  RESET,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD,      RGB_VAI, _______, _______, _______,  TSKMGR, \
           _______,  _______, _______, _______,      _______,  _______, _______, _______        \
 )
 };
